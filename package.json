@@ -1,0 +1,27 @@
+{
+  "name": "portafolio-ignacio",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Portafolio de gestion de contenido",
+  "keywords": [
+    "apps",
+    "CMS",
+    "portafolio"
+  ],
+  "license": "GNU GPLv3 License",
+  "author": "ignacio lopez Torres <masterdeveloper949@gmail.com> (http://ignaciolopeztorres.blogspot.com/)",
+  "type": "module",
+  "main": "bin/www",
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "debug": "^4.4.3",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "morgan": "^1.10.1",
+    "nodemon": "^3.1.10"
+  }
+}
