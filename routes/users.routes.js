@@ -25,4 +25,16 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', UserController.getAll);
 
+/* GET user by ID. */
+router.get('/:id', UserController.getById);
+
+/* POST create user. */
+router.post('/', UserController.create);
+
+/* PUT update user. */
+router.put('/:id', UserController.update);
+
+/* DELETE user. */
+router.delete('/:id', UserController.delete);
+
 export default router;

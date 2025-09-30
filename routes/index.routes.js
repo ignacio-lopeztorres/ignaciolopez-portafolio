@@ -22,5 +22,16 @@ var router = express.Router();
  */
 router.get('/', indexController.getAll);
 
+    /* GET home page by ID. */
+    router.get('/:id', indexController.getById);
+
+    /* POST create home page. */
+    router.post('/', indexController.create);
+
+    /* PUT update home page. */
+    router.put('/:id', indexController.update);
+
+    /* DELETE home page. */
+    router.delete('/:id', indexController.delete);
 
 export default router;
