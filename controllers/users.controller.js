@@ -1,42 +1,63 @@
+import User from "../models/user.models.js";
+
 class UserController {
     constructor() {}
 
-    getAll (req, res, next) {
+    async getAll (req, res, next) {
         try {
-            res.send('respond with a resource');
+            const users = await User.findAll();
+            res.json(users);
         } catch (error) {
-            res.send(error);        
+            next(error);
         }
     }
-    getById (req, res, next) {
+
+    async getById (req, res, next) {
         try {
-            res.send('user by id');
+            const user = await User.findByPk(req.params.id);
+            if (user) {
+                res.json(user);
+            } else {
+                res.status(404).json({ message: 'User not found' });
+            }
         } catch (error) {
             res.send(error);
         }
     }
-    create (req, res, next) {
+    async create (req, res, next) {
         try {
-            res.send('user created');
+            const user = await User.create(req.body);
+            res.status(201).json(user);
         } catch (error) {
             res.send(error);
         }
     }   
-    update (req, res, next) {
+    async update (req, res, next) {
         try {
-            res.send('user updated');
+            const user = await User.findByPk(req.params.id);
+            if (user) {
+                await user.update(req.body);
+                res.json(user);
+            } else {
+                res.status(404).json({ message: 'User not found' });
+            }
         } catch (error) {
             res.send(error);
         }
     }
-    delete (req, res, next) {
+    async delete (req, res, next) {
         try {
-            res.send('user deleted');
+            const user = await User.findByPk(req.params.id);
+            if (user) {
+                await user.destroy();
+                res.json({ message: 'User deleted successfully' });
+            } else {
+                res.status(404).json({ message: 'User not found' });
+            }
         } catch (error) {
             res.send(error);
         }
-    }   
-    
+    }      
 }
 
 export default new UserController();

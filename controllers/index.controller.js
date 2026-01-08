@@ -12,7 +12,7 @@ class IndexController {
      */
     getAll (req, res, next) {
         try {
-            res.status(200).send('index');
+            res.status(200).sendFile('index.html', { root: './views' });
         } catch (error) {
             res.status(500).send(error);
         }

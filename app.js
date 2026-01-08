@@ -23,6 +23,7 @@ import createError from 'http-errors';
 
 import indexRouter from './routes/index.routes.js';
 import usersRouter from './routes/users.routes.js';
+import  Sequelize_config from './core/config/sequelize.config.js';
 
 var app = express();
 
@@ -44,6 +45,14 @@ app.use('/users', usersRouter);
 app.use(function(req, res, next) {
     next(createError(404));
 });
+
+// setup sequelize
+try {
+    await Sequelize_config.authenticate();
+    console.log('Connection to the database has been established successfully.');
+} catch (error) {
+    console.error('Unable to connect to the database:', error);
+}
 
 // error handler
 app.use(function(err, req, res, next) {
