@@ -50,8 +50,7 @@ User.init({
                 msg: 'Password must be between 8 and 128 characters',
             },
         },
-    },
-    
+    },    
     role: {
         type: DataTypes.ENUM('user', 'admin'),
         allowNull: false,

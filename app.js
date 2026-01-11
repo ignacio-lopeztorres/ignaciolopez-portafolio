@@ -29,8 +29,8 @@ var app = express();
 
 const __dirname = import.meta.dirname;
 // view engine setup
+app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -38,8 +38,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// routes
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -49,6 +50,7 @@ app.use(function(req, res, next) {
 // setup sequelize
 try {
     await Sequelize_config.authenticate();
+    await Sequelize_config.sync( { alter: true } );
     console.log('Connection to the database has been established successfully.');
 } catch (error) {
     console.error('Unable to connect to the database:', error);

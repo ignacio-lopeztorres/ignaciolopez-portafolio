@@ -20,7 +20,7 @@ class IndexController {
 
     getById (req, res, next) {
         try {
-            res.status(200).send('index by id');
+            res.status(200).send('index by id retrieved');
         } catch (error) {
             res.status(500).send(error);
         }
@@ -46,9 +46,7 @@ class IndexController {
         } catch (error) {
             res.status(500).send(error);
         }   
-    }
-
-    
+    }    
 }
 
 export default new IndexController();

@@ -3,12 +3,19 @@ import User from "../models/user.models.js";
 class UserController {
     constructor() {}
 
-    async getAll (req, res, next) {
+    /**
+     * Retrieve all users from the database.
+     * @return {Promise<void>}
+     */
+    async getAllUsers (req, res, next) {
         try {
             const users = await User.findAll();
+            console.log(users);
             res.json(users);
         } catch (error) {
-            next(error);
+            //next(error);
+            console.log(error);
+            res.send(error);
         }
     }
 
@@ -24,9 +31,35 @@ class UserController {
             res.send(error);
         }
     }
+    /**
+     * Create a new user.
+     * @param {Object} req - Express request object
+     * @param {Object} res - Express response object
+     * @return {Promise<void>}
+     */
+
     async create (req, res, next) {
         try {
-            const user = await User.create(req.body);
+            const newUser = {};
+
+            newUser.first_name = req.body.first_name;
+            newUser.last_name = req.body.last_name;
+            newUser.username = req.body.username;
+            newUser.email =  req.body.email;
+            newUser.password = req.body.password;
+            newUser.password_hash = req.body.passwordHash;
+            newUser.role = req.body.role;
+            newUser.is_active = req.body.is_active;
+            
+            console.log(newUser);
+            
+            const user = await User.create(newUser);
+
+            console.log(user);
+            if (!user) {
+                return res.status(400).json({ message: 'Error creating user' });
+            }
+
             res.status(201).json(user);
         } catch (error) {
             res.send(error);

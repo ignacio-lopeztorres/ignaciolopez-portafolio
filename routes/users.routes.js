@@ -20,21 +20,22 @@
  */
 import express from 'express';
 import UserController from '../controllers/users.controller.js';
+
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', UserController.getAll);
+router.get('/', UserController.getAllUsers);
 
 /* GET user by ID. */
-router.get('/:id', UserController.getById);
+//router.get('/:id', UserController.getById);
 
 /* POST create user. */
 router.post('/', UserController.create);
 
 /* PUT update user. */
-router.put('/:id', UserController.update);
+//router.put('/:id', UserController.update);
 
 /* DELETE user. */
-router.delete('/:id', UserController.delete);
+//router.delete('/:id', UserController.delete);
 
 export default router;
