@@ -20,9 +20,8 @@ User.init({
         allowNull: true,
     },
     username: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(60),
         allowNull: false,
-        unique: true,
         validate: { notEmpty: true }
     },
     email: {

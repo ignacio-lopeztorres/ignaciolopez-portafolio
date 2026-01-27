@@ -5,7 +5,11 @@
  * @requires express
  * @requires ../controllers/users.controller.js
  */
+import express from 'express';
+import UserController from '../controllers/users.controller.js';
+import loginController from "../controllers/login.controller.js";
 
+const router = express.Router();
 /**
  * GET /users/
  * Retrieves a list of all users.
@@ -18,10 +22,6 @@
  * @param {express.Response} res - Express response object
  * @returns {void}
  */
-import express from 'express';
-import UserController from '../controllers/users.controller.js';
-
-var router = express.Router();
 
 /* GET users listing. */
 router.get('/', UserController.getAllUsers);
@@ -37,5 +37,7 @@ router.post('/', UserController.create);
 
 /* DELETE user. */
 //router.delete('/:id', UserController.delete);
+
+router.post('/login', loginController.login);
 
 export default router;
